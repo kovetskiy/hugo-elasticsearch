@@ -148,6 +148,10 @@ class HugoElasticsearch {
 
     if (meta.data.url) uri = meta.data.url;
 
+    if (uri.endsWith("_index")) {
+      uri = uri.slice(0, -6);
+    }
+
     this.list.push({ ...meta.data, uri, content, tags });
   }
 
