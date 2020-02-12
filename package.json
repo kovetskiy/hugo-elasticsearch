@@ -58,7 +58,7 @@
     "glob": "^7.1.2",
     "gray-matter": "^4.0.1",
     "remark": "^11.0.2",
-    "strip-markdown": "^3.1.1",
+    "strip-markdown": "github:kovetskiy/strip-markdown",
     "striptags": "^3.1.1",
     "toml": "^2.3.3"
   },
