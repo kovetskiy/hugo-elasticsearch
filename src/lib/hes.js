@@ -125,6 +125,8 @@ class HugoElasticsearch {
   }
 
   readInputFile(filePath) {
+    console.log("reading", filePath);
+
     const ext = path.extname(filePath);
     const meta = matter.read(filePath, this.languageConfig);
 
@@ -134,6 +136,7 @@ class HugoElasticsearch {
     const tags = meta.data.tags || [];
     let content;
 
+    console.log("stripping", filePath);
     // Content
     if (ext === ".md") {
       content = String(deasync(remark().use(stripMd).process)(meta.content));
