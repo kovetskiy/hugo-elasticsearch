@@ -6,7 +6,6 @@ import striptags from "striptags";
 import path from "path";
 import remark from "remark";
 import stripMd from "strip-markdown";
-import deasync from "deasync";
 
 class HugoElasticsearch {
   ////////////////////////////////////////////
@@ -139,7 +138,11 @@ class HugoElasticsearch {
     console.log("stripping", filePath);
     // Content
     if (ext === ".md") {
-      content = String(deasync(remark().use(stripMd).process)(meta.content));
+      content = String(
+        remark()
+          .use(stripMd)
+          .processSync(meta.content)
+      );
     } else {
       content = striptags(meta.content);
     }
