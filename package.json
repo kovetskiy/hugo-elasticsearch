@@ -54,9 +54,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "commander": "^2.14.1",
+    "deasync": "^0.1.19",
     "glob": "^7.1.2",
     "gray-matter": "^4.0.1",
-    "remove-markdown": "^0.3.0",
+    "remark": "^11.0.2",
+    "strip-markdown": "^3.1.1",
     "striptags": "^3.1.1",
     "toml": "^2.3.3"
   },

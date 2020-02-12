@@ -2,9 +2,11 @@ import fs from "fs";
 import glob from "glob";
 import matter from "gray-matter";
 import toml from "toml";
-import removeMd from "remove-markdown";
 import striptags from "striptags";
 import path from "path";
+import remark from "remark";
+import stripMd from "strip-markdown";
+import deasync from "deasync";
 
 class HugoElasticsearch {
   ////////////////////////////////////////////
@@ -133,8 +135,11 @@ class HugoElasticsearch {
     let content;
 
     // Content
-    if (ext === ".md") content = removeMd(meta.content);
-    else content = striptags(meta.content);
+    if (ext === ".md") {
+      content = String(deasync(remark().use(stripMd).process)(meta.content));
+    } else {
+      content = striptags(meta.content);
+    }
 
     // Uri
     let uri = `/${filePath.substring(0, filePath.lastIndexOf("."))}`.replace(`${this.baseDir}/`, "");

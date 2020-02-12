@@ -10,6 +10,7 @@ describe("hes bin", () => {
 
   describe("#hes", () => {
     beforeAll(() => {
+      console.log(`node "${root}/bin/hes.js" -i "${root}/invalid/path/to/content" -o "${root}/public/invalid.json"`);
       shell.exec(`node "${root}/bin/hes.js" -i "${root}/invalid/path/to/content" -o "${root}/public/invalid.json"`);
     });
 
@@ -38,27 +39,30 @@ describe("hes bin", () => {
     });
 
     it("should parse the correct `_index` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, '"_index":"indexx"');
+      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, "\"_index\":\"indexx\"");
     });
 
     it("should parse the correct `title` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, '"title":"Sample title"');
+      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, "\"title\":\"Sample title\"");
     });
 
     it("should parse the correct `description` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, '"description":"Sample description"');
+      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, "\"description\":\"Sample description\"");
     });
 
     it("should parse the correct `tags` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, '"tags":["tag1"]');
+      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, "\"tags\":[\"tag1\"]");
     });
 
     it("should parse the correct `uri` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, '"uri":"/test-yaml"');
+      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, "\"uri\":\"/test-yaml\"");
     });
 
     it("should parse the correct `content` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-yaml.json`, '"content":"\\nSample content header\\nSample content body"');
+      assert.fileContent(
+        `${root}/public/elasticsearch-yaml.json`,
+        "\"content\":\"Sample content header\\n\\nSample content body\\ndo_not_remove_underscore\\n\""
+      );
     });
   });
 
@@ -75,27 +79,27 @@ describe("hes bin", () => {
     });
 
     it("should parse the correct `_index` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-toml.json`, '"_index":"indexx"');
+      assert.fileContent(`${root}/public/elasticsearch-toml.json`, "\"_index\":\"indexx\"");
     });
 
     it("should parse the correct `title` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-toml.json`, '"title":"Sample title"');
+      assert.fileContent(`${root}/public/elasticsearch-toml.json`, "\"title\":\"Sample title\"");
     });
 
     it("should parse the correct `description` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-toml.json`, '"description":"Sample description"');
+      assert.fileContent(`${root}/public/elasticsearch-toml.json`, "\"description\":\"Sample description\"");
     });
 
     it("should parse the correct `tags` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-toml.json`, '"tags":["tag1"]');
+      assert.fileContent(`${root}/public/elasticsearch-toml.json`, "\"tags\":[\"tag1\"]");
     });
 
     it("should parse the correct `uri` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-toml.json`, '"uri":"/test-toml"');
+      assert.fileContent(`${root}/public/elasticsearch-toml.json`, "\"uri\":\"/test-toml\"");
     });
 
     it("should parse the correct `content` key", () => {
-      assert.fileContent(`${root}/public/elasticsearch-toml.json`, '"content":"\\nSample content header\\nSample content body"');
+      assert.fileContent(`${root}/public/elasticsearch-toml.json`, "\"content\":\"Sample content header\\n\\nSample content body\\n\"");
     });
   });
 });
